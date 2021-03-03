@@ -7,6 +7,7 @@ import (
 // Message is a single POCSAG Alphanumeric message
 type Message struct {
 	Addr      uint32
+	Function  uint8
 	Content   string
 	IsNumeric bool
 }
@@ -265,7 +266,7 @@ func appendContentNumeric(content string) (int, Burst) {
 func appendMessage(startpos int, msg *Message) (int, Burst) {
 	// expand the parameters of the message
 	addr := msg.Addr
-	function := byte(0)
+	function := byte(msg.Function)
 	type_ := 'a'
 	content := msg.Content
 
